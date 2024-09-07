@@ -1,0 +1,41 @@
+#include <iostream>
+
+// Definition of the Node structure
+struct Node {
+    int data;
+    Node* next;
+    
+    Node(int value) : data(value), next(nullptr) {}
+};
+
+// Function to print all elements in the linked list
+void printLinkedList(Node* head) {
+    Node* current = head;
+    while (current != nullptr) {
+        std::cout << current->data << " ";
+        current = current->next;
+    }
+    std::cout << std::endl;
+}
+
+int main() {
+    // Creating a linked list: 10 -> 20 -> 30 -> 40
+    Node* head = new Node(10);
+    head->next = new Node(20);
+    head->next->next = new Node(30);
+    head->next->next->next = new Node(40);
+    
+    // Printing the linked list
+    printLinkedList(head);
+    
+    // Cleaning up the allocated memory
+    Node* current = head;
+    Node* nextNode;
+    while (current != nullptr) {
+        nextNode = current->next;
+        delete current;
+        current = nextNode;
+    }
+    
+    return 0;
+}
